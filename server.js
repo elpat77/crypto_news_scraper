@@ -5,7 +5,7 @@ const connection = mongoose.connection;
 const logger = require("morgan");
 const colors = require("colors");
 const PORT = process.env.port || 3000;
-const MONGO_URI = process.env.MONGODB_URI || "mongodb://localhost/deploy_cryptoScraperDB"
+const MONGO_URI = process.env.MONGODB_URI || "mongodb://localhost/crypto_news_db"
 
 mongoose.connect(MONGO_URI, {
     useNewUrlParser: true,
@@ -24,8 +24,8 @@ app.use(express.static("./views"));
 
 app.use(logger("dev"));
 
-// const apiRoutes = require("./routes/api-routes");
-// app.use("/api", apiRoutes);
+const apiRoutes = require("./routes/api-routes");
+app.use("/api", apiRoutes);
 
 const htmlRoutes = require("./routes/html-routes");
 app.use("/", htmlRoutes);
