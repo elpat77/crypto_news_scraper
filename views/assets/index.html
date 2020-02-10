@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+    <!----------------Boot strap CSS----------------------->
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>CRYPTO NEWS SCRAPER</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-light bg-secondary">
+        <a class="navbar-brand text-light" href="/">Cryptop News</a>
+    </nav>
+    <div class="jumbotron">
+        <div class="container text-center">
+            <h1 class="display-4">Get the latest cryptocurrency news!</h1>
+            <p class="lead">
+                This is a simple application that finds crypto news in other sites and displays it in one convenient
+                place.
+            </p>
+            <hr class="my-4" />
+            <button class="btn btn-outline-primary" type="button" id="displayScraps">
+                Show me the Articles!
+            </button>
+        </div>
+    </div>
+    <h1>
+        <div class="container-fluid"></div>
+        <div class="row">
+            <div class="col-4">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-header">
+                        <p class="card-title" id="articleTitle">Article title</p>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-text" id="articleLink">Article link: </h5>
+                        <a href="#" class="btn btn-primary" id="CommentBtn">Comment</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-header">
+                        <p class="card-title" id="articleTitle">Article title</p>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-text" id="articleLink">Article link: </h5>
+                        <a href="#" class="btn btn-primary" id="CommentBtn">Comment</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-header">
+                        <p class="card-title" id="articleTitle">Article title</p>
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-text" id="articleLink">Article link: </h5>
+                        <a href="#" class="btn btn-primary" id="CommentBtn">Comment</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </h1>
+
+
+
+    <div class="container">
+        <div id="newsContainer" class="row"></div>
+    </div>
+    <!---------------- Jquery ----------------------->
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+    <!--------------JS from Bootstrap------------------------->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    <!-- userjs -->
+    <script src="./assets/javascript/home.js"></script>
+
+    <script type="text/javascript">
+        (function ($) {
+            // we can now rely on $ within the safety of our "bodyguard" function
+            $(document).ready
+        })(jQuery);
+    </script>
+</body>
+
+</html>

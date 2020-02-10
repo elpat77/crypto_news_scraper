@@ -24,10 +24,10 @@ app.use(express.static("./views"));
 
 app.use(logger("dev"));
 
-const apiRoutes = require("./routes/api-routes");
-app.use("/api", apiRoutes);
+const scrapRoutes = require("./controller/scrapRoutes");
+app.use("/api", scrapRoutes);
 
-const htmlRoutes = require("./routes/html-routes");
+const htmlRoutes = require("./controller/html-routes");
 app.use("/", htmlRoutes);
 
 app.listen(PORT, () => {
