@@ -6,7 +6,7 @@ const cheerio = require('cheerio');
 
 router.get('/all', (req, res) => {
     db.Scrap.find().then(scrap => {
-        res.json(scrap);
+        res.send(scrap);
     });
 });
 
@@ -14,7 +14,7 @@ router.get('/findByTitle', (req, res) => {
     db.Scrap.find({
         title: req.body.title
     }).then(result => {
-        res.json(result);
+        res.send(result);
     });
 });
 
@@ -30,8 +30,6 @@ router.get('/scrape', (req, res) => {
             var link = $(element)
                 .find("a.section-pick__title")
                 .attr("href");
-            const url = $(element)
-                .find('a').attr('href').split();
             // var obj2 = {
             //     title: forbesTitle,
             //     link: forbesLink
@@ -48,12 +46,10 @@ router.get('/scrape', (req, res) => {
                     let newObj = {}
                     newObj.title = title.toString();
                     newObj.link = link.toString();
-                    fullUrl = "https://www.forbes.com/" + url.toString();
-                    newObj.url = fullUrl;
                     console.log(newObj);
 
                     db.Scrap.create(newObj).then(result => {
-                    }).catch((err) => res.json(err));
+                    }).catch((err) => res.send(err));
                 }
             });
         });

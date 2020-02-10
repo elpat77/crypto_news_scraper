@@ -6,11 +6,11 @@ const ScrapSchema = new Schema({
         type: String,
         required: "Title is required"
     },
-    webLink: {
+    link: {
         type: String,
         required: "WebLink is required"
     },
-    comments: {
+    comment: {
         type: [Schema.Types.String],
         default: []
     }
