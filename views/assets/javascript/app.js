@@ -57,14 +57,6 @@ $(document).ready(function () {
             cb(result);
         });
     }
-    // function getNews() {
-    //     $.ajax({
-    //         method: 'GET',
-    //         url: '/api/all'
-    //     }).then(result => {
-    //         console.log('Got latest news');
-    //     });
-    // }
 
     function getAllNews(cb) {
         $.ajax({

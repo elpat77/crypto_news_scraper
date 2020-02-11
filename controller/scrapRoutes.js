@@ -48,7 +48,7 @@ router.get('/scrape', (req, res) => {
                 }
             });
         });
-        res.send("success");
+        res.send("data has been pushed to the database");
     });
 });
 
