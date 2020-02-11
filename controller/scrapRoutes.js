@@ -10,19 +10,19 @@ router.get('/all', (req, res) => {
     });
 });
 
-router.get('/findByTitle', (req, res) => {
+router.get('/find', (req, res) => {
     db.Scrap.find({
         title: req.body.title
+
     }).then(result => {
         res.send(result);
     });
+    console.log(req.title);
 });
 
 router.get('/scrape', (req, res) => {
     axios.get("https://www.forbes.com/crypto-blockchain/#4257484d2b6e").then(response => {
         let $ = cheerio.load(response.data);
-        // console.log(response.data);
-        var resultsForbes = [];
         $("div.section-pick").each((i, element) => {
             var title = $(element)
                 .find("a.section-pick__title")
@@ -30,11 +30,6 @@ router.get('/scrape', (req, res) => {
             var link = $(element)
                 .find("a.section-pick__title")
                 .attr("href");
-            // var obj2 = {
-            //     title: forbesTitle,
-            //     link: forbesLink
-            // };
-            // resultsForbes.push(obj2);
             console.log(title);
             console.log(link);
 
