@@ -30,8 +30,8 @@ router.get('/scrape', (req, res) => {
             var link = $(element)
                 .find("a.section-pick__title")
                 .attr("href");
-            console.log(title);
-            console.log(link);
+            // console.log(title);
+            // console.log(link);
 
             db.Scrap.find({
                 title: title
@@ -63,7 +63,7 @@ router.post("/new", (req, res) => {
 });
 
 // router.post('/comment/:id', (req, res) => {
-//     db.News.findByIdAndUpdate(
+//     db.Scrap.findByIdAndUpdate(
 //         { _id: req.params.id },
 //         {
 //             $push: {
