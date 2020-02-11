@@ -5,11 +5,12 @@ $(document).ready(function () {
     });
     ;
     function goScrap() {
-        getAllNews(scrap => {
-            console.log(scrap);
-            for (let i = 0; i < scrap.length; i++) {
-                $('.news').prepend
-                    (`<div class="col-sm-12 mb-3">
+        scrapeNews(result => {
+            getAllNews(scrap => {
+                console.log(scrap);
+                for (let i = 0; i < scrap.length; i++) {
+                    $('.news').prepend
+                        (`<div class="col-sm-12 mb-3">
                     <div class="card text-center">
                         <div class="card-header">
                             <h5 class="card-title" id="articleTitle">${scrap[i].title}</h5>
@@ -20,7 +21,8 @@ $(document).ready(function () {
                         <a href="#" class="btn" id="${scrap[i]._id}">Comment</a>
                     </div>
                 </div>`);
-            }
+                }
+            });
         });
     }
 
@@ -47,7 +49,14 @@ $(document).ready(function () {
 
 
     });
-
+    function scrapeNews(cb) {
+        $.ajax({
+            method: 'GET',
+            url: '/api/scrape'
+        }).then(result => {
+            cb(result);
+        });
+    }
     // function getNews() {
     //     $.ajax({
     //         method: 'GET',
