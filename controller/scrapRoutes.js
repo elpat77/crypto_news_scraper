@@ -13,11 +13,10 @@ router.get('/all', (req, res) => {
 router.get('/find', (req, res) => {
     db.Scrap.find({
         title: req.body.title
-
     }).then(result => {
         res.send(result);
     });
-    console.log(req.title);
+    console.log(title);
 });
 
 router.get('/scrape', (req, res) => {
@@ -62,22 +61,22 @@ router.post("/new", (req, res) => {
     });
 });
 
-// router.post('/comment/:id', (req, res) => {
-//     db.Scrap.findByIdAndUpdate(
-//         { _id: req.params.id },
-//         {
-//             $push: {
-//                 comments: {
-//                     firstName: req.body.firstName,
-//                     lastName: req.body.lastName,
-//                     comment: req.body.comment
-//                 }
-//             }
-//         }).then(result => {
-//             res.json(result);
-//         }).catch((err) => {
-//             res.send(err);
-//         });
-// });
+router.post('/comment/:id', (req, res) => {
+    db.Scrap.findIDAndComment(
+        { _id: req.params.id },
+        {
+            $push: {
+                comments: {
+                    userName: req.body.userName,
+                    userEmail: req.body.userEmail,
+                    userComment: req.body.userComment
+                }
+            }
+        }).then(result => {
+            res.json(result);
+        }).catch((err) => {
+            res.send(err);
+        });
+});
 
 module.exports = router;

@@ -53,7 +53,7 @@ $(document).ready(function () {
     function getByID(id, cb) {
         $.ajax({
             method: 'GET',
-            url: `/api/getID/${id}`,
+            url: `/api/getId/${id}`,
 
         }).then(result => {
             cb(result);
@@ -64,17 +64,48 @@ $(document).ready(function () {
         $.ajax({
             method: 'POST',
             url: `/api/comment/${id}`,
-            data: { id: id }
+            data: { userName: userName, userEmail: userEmail, userComment: userComment }
         }).then(result => {
             cb(result);
         })
     }
 
-    $(document).on('click', '.sendComment', function (e) {
+    function renderComments(scrapId) {
+        findNewsById(scrapId, result => {
+            let comment = result[0].comments;
+            $('.commentArea').empty();
+            for (let i = 0; i < comment.length; i++) {
+                $('.commentArea').prepend(`
+            <div class="card mt-2">
+                <div class="card-body">
+                    <h5 class="card-title">${comment[i].userName}</h5>
+                    <p class="card-text">${comment[i].userComment}</p>
+                    <button class="btn btn-danger deleteBtn" id="${comment[i]._id}" data="${scrapId}">Delete</button>
+                </div>
+            </div>`);
+            }
+        });
+    }
+
+    $(document).on('click', '#sendComment', function (e) {
         e.preventDefault();
-        let name = $('#userName').val();
-        let email = $('#userEmail').val();
-        let comment = $('#userComment').val();
+        let userName = $('#userName').val();
+        let userEmail = $('#userEmail').val();
+        let userComment = $('#userComment').val();
+        let scrapId = $(this).attr('id');
+        console.log("clicked");
+        console.log(userEmail);
+        console.log(userComment);
+        getByID(scrapId, result => {
+            makeComment(scrapId, userName, userEmail, userComment => {
+                renderComments(scrapId);
+                $('#userName').val('');
+                $('userEmail').val('');
+                $('#userComment').val('');
+            });
+        });
     });
+
+
 
 });
