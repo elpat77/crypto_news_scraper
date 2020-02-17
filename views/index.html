@@ -12,6 +12,7 @@
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>CRYPTO NEWS SCRAPER</title>
 </head>
 
@@ -27,55 +28,70 @@
                 place.
             </p>
             <hr class="my-4" />
-            <button class="btn" type="button" id="displayScraps">
-                Show me the Articles!
+            <button class="btn btn-lg" type="button" id="displayScraps">
+                Start scraping!
             </button>
         </div>
     </div>
-    <div class="container justify-content-center">
-        <div class="news">
-            <!-- <div class="col-sm-4">
-                <div class="card text-center">
-                    <div class="card-header">
-                        <p class="card-title" id="articleTitle">Article title</p>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-text" id="articleLink">Article link:
-                            kjhdfkjhjfkdhjkfdhklsfhklsahflkashdklfhaklhdklahsklhkl</h5>
-                        <a href="#" class="btn" id="commentBtn">Comment</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="card text-center">
-                    <div class="card-header">
-                        <p class="card-title" id="articleTitle">Article title</p>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-text" id="articleLink">Article link: </h5>
-                        <a href="#" class="btn" id="commentBtn">Comment</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-4">
-                <div class="card text-center">
-                    <div class="card-header">
-                        <p class="card-title" id="articleTitle">Article title</p>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-text" id="articleLink">Article link: </h5>
-                        <a href="#" class="btn" id="commentBtn">Comment</a>
-                    </div>
-                </div>
-            </div> -->
 
+    <div class="row">
+        <div class="container justify-content-center col-md-10 news">
+        </div>
+
+        <!-- <div class="container justify-content-center col-md-3 comment">
+            <div class="commentForm">
+            </div>
+            <div class="commentArea"></div>
+        </div> -->
+    </div>
+    <div class="modal fade" id="modalContactForm" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h4 class="modal-title w-100 font-weight-bold">Please complete this form</h4>
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body mx-3">
+                    <div class="md-form mb-5 text-center">
+                        <i class="fa fa-user prefix"></i>
+                        <label data-error="wrong" for="userName"> Your name</label>
+                        <input type="text" id="userName" class="form-control validate">
+                    </div>
+
+                    <div class="md-form mb-5 text-center">
+                        <i class="fa fa-envelope prefix"></i>
+                        <label data-error="wrong" for="userEmail"> Your email</label>
+                        <input type="email" id="userEmail" class="form-control validate">
+
+                    </div>
+
+                    <div class="md-form text-center">
+                        <i class="fa fa-pencil prefix "></i>
+                        <label data-error="wrong" for="userComment"> Your message</label>
+                        <textarea type="text" id="userComment" class="md-textarea form-control" rows="6"></textarea>
+
+                    </div>
+
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                    <button class="btn btn-unique sendComment">Send <i class="fa fa-paper-plane-o ml-1"></i></button>
+                </div>
+            </div>
         </div>
     </div>
+
+
+
+
 
     <!---------------- Jquery ----------------------->
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"
         integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+        integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
 
     <!-- userjs -->
     <script src="./assets/javascript/app.js"></script>
