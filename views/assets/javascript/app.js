@@ -25,6 +25,10 @@ $(document).ready(function () {
                     comment</a>
                     </div>
                     </div>
+                    <div class="commentArea">
+                    <h1>comment area</h1>
+                </div>
+
                 </div>
                 </row>`);
                 }
@@ -53,8 +57,7 @@ $(document).ready(function () {
     function getByID(id, cb) {
         $.ajax({
             method: 'GET',
-            url: `/api/getId/${id}`,
-
+            url: `/api/find/${id}`
         }).then(result => {
             cb(result);
         });
@@ -70,9 +73,31 @@ $(document).ready(function () {
         })
     }
 
+
+    $("#sendComment").on('click', function () {
+        let userName = $('#userName').val();
+        let userEmail = $('#userEmail').val();
+        let userComment = $('#userComment').val();
+        let scrapId = $(this).attr('id');
+        $('#userName').val('');
+        $('userEmail').val('');
+        $('#userComment').val('');
+        console.log("clicked");
+        console.log(userName);
+        console.log(userEmail);
+        console.log(userComment);
+        console.log(scrapId)
+        getByID(scrapId, result => {
+            makeComment(scrapId, userName, userEmail, userComment, commentResult => {
+                renderComments(scrapId);
+            });
+        });
+    });
+
     function renderComments(scrapId) {
-        findNewsById(scrapId, result => {
-            let comment = result[0].comments;
+        getByID(scrapId, result => {
+            let comment = result[0].comment;
+            console.log("newcomment", comment[i].userName)
             $('.commentArea').empty();
             for (let i = 0; i < comment.length; i++) {
                 $('.commentArea').prepend(`
@@ -86,25 +111,6 @@ $(document).ready(function () {
             }
         });
     }
-
-    $(document).on('click', '#sendComment', function (e) {
-        e.preventDefault();
-        let userName = $('#userName').val();
-        let userEmail = $('#userEmail').val();
-        let userComment = $('#userComment').val();
-        let scrapId = $(this).attr('id');
-        console.log("clicked");
-        console.log(userEmail);
-        console.log(userComment);
-        getByID(scrapId, result => {
-            makeComment(scrapId, userName, userEmail, userComment => {
-                renderComments(scrapId);
-                $('#userName').val('');
-                $('userEmail').val('');
-                $('#userComment').val('');
-            });
-        });
-    });
 
 
 

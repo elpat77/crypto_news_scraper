@@ -1,3 +1,4 @@
 module.exports = {
-    Scrap: require("./Scrap")
+    Scrap: require("./Scrap"),
+    User: require('./User')
 };

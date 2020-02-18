@@ -10,14 +10,14 @@ router.get('/all', (req, res) => {
     });
 });
 
-router.get('/find', (req, res) => {
-    db.Scrap.find({
-        title: req.body.title
+router.get('/find/:id', (req, res) => {
+    db.Scrap.findById({
+        _id: req.params.id
     }).then(result => {
         res.send(result);
     });
-    console.log(title);
 });
+
 
 router.get('/scrape', (req, res) => {
     axios.get("https://www.forbes.com/crypto-blockchain/#4257484d2b6e").then(response => {
