@@ -1,6 +1,6 @@
 $(document).ready(function () {
     $("#displayScraps").on("click", () => {
-        console.log("clicked");
+        console.log("clicked start scraping");
         goScrap();
     });
     ;
@@ -18,11 +18,26 @@ $(document).ready(function () {
                         </div>
                     <div class="card-body">
                         
-                        <a href="${scrap[i].link}" class="btn"  target="_blank"  id="articleLink"><i class="fa fa-rocket"></i> Take me to the full article</a>
+                        <a href="${scrap[i].link}" class="btn btn-lg"  target="_blank"  id="articleLink"><i class="fa fa-rocket"></i> Take me to the full article</a>
                         <br><br>
                         <div class="text-center">
-                    <a href="" class="btn btn-rounded mb-4" data-toggle="modal" data-target="#modalContactForm" id="${scrap[i]._id}"><i class="fa fa-comments"></i> Make a
-                    comment</a>
+                        <div class="input-group input-group-lg mb-3 col-sm-8 offset-2">
+                        <input
+                          type="text"
+                          
+                          class="form-control commentText"
+                          placeholder="Text goes here"
+                        />
+                        <div class="input-group-append">
+                          <button
+                            class="btn postComment"
+                            type="button"
+                            id="${scrap[i]._id}"
+                          ><i class="fa fa-comments"></i> Post a
+                          comment</a>
+                          </button>
+                        </div>
+                      </div>
                     </div>
                     </div>
                     <div class="commentArea">
@@ -63,38 +78,24 @@ $(document).ready(function () {
         });
     }
 
-    function makeComment(id, userName, userEmail, userComment, cb) {
+    $(document).on('click', '.postComment', function (e) {
+        e.preventDefault();
+        // $(".postComment").on('click', function () {
+        let commentText = $('.commentText').val();
+        $('.commentText').val('');
+        console.log("clicked post comment");
+        console.log(commentText);
         $.ajax({
-            method: 'POST',
-            url: `/api/comment/${id}`,
-            data: { userName: userName, userEmail: userEmail, userComment: userComment }
-        }).then(result => {
-            cb(result);
-        })
-    }
-
-
-    $("#sendComment").on('click', function () {
-        let userName = $('#userName').val();
-        let userEmail = $('#userEmail').val();
-        let userComment = $('#userComment').val();
-        let scrapId = $(this).attr('id');
-        $('#userName').val('');
-        $('userEmail').val('');
-        $('#userComment').val('');
-        console.log("clicked");
-        console.log(userName);
-        console.log(userEmail);
-        console.log(userComment);
-        console.log(scrapId)
-        getByID(scrapId, result => {
-            makeComment(scrapId, userName, userEmail, userComment, commentResult => {
-                renderComments(scrapId);
-            });
+            method: "POST",
+            url: "/api/new",
+            data: { text: commentText }
+        }).then(() => {
+            console.log(data);
+            // renderComments();
         });
     });
 
-    function renderComments(scrapId) {
+    renderComments = (scrapId) => {
         getByID(scrapId, result => {
             let comment = result[0].comment;
             console.log("newcomment", comment[i].userName)

@@ -53,30 +53,26 @@ router.get('/scrape', (req, res) => {
 
 router.post("/new", (req, res) => {
     db.Scrap.create({
-        title: req.body.title,
-        link: req.body.link,
-        comment: req.body.comment
-    }).then(newScrap => {
-        res.send(newScrap);
+        text: req.body.text
+    }).then(newComment => {
+        res.send(newComment);
     });
 });
 
-router.post('/comment/:id', (req, res) => {
-    db.Scrap.findIDAndComment(
-        { _id: req.params.id },
-        {
-            $push: {
-                comments: {
-                    userName: req.body.userName,
-                    userEmail: req.body.userEmail,
-                    userComment: req.body.userComment
-                }
-            }
-        }).then(result => {
-            res.json(result);
-        }).catch((err) => {
-            res.send(err);
-        });
-});
+// router.post('/comment/:id', (req, res) => {
+//     db.Scrap.findIDAndComment(
+//         { _id: req.params.id },
+//         {
+//             $push: {
+//                 comment: {
+//                     userComment: req.body.userComment
+//                 }
+//             }
+//         }).then(result => {
+//             res.json(result);
+//         }).catch((err) => {
+//             res.send(err);
+//         });
+// });
 
 module.exports = router;
