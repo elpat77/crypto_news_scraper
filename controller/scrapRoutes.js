@@ -59,20 +59,20 @@ router.post("/new", (req, res) => {
     });
 });
 
-// router.post('/comment/:id', (req, res) => {
-//     db.Scrap.findIDAndComment(
-//         { _id: req.params.id },
-//         {
-//             $push: {
-//                 comment: {
-//                     userComment: req.body.userComment
-//                 }
-//             }
-//         }).then(result => {
-//             res.json(result);
-//         }).catch((err) => {
-//             res.send(err);
-//         });
-// });
+router.post('/comment/:id', (req, res) => {
+    db.Scrap.findByIdAndUpdate(
+        { _id: req.params.id },
+        {
+            $push: {
+                comment: {
+                    comment: req.body.comment
+                }
+            }
+        }).then(result => {
+            res.json(result);
+        }).catch((err) => {
+            res.send(err);
+        });
+});
 
 module.exports = router;

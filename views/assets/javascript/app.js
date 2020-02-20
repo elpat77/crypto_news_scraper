@@ -32,7 +32,7 @@ $(document).ready(function () {
                           <button
                             class="btn postComment"
                             type="button"
-                            id="${scrap[i]._id}"
+                            data="${scrap[i]._id}"
                           ><i class="fa fa-comments"></i> Post a
                           comment</a>
                           </button>
@@ -40,7 +40,7 @@ $(document).ready(function () {
                       </div>
                     </div>
                     </div>
-                    <div class="commentArea">
+                    <div class="commentArea" id="${scrap[i]._id}">
                     <h1>comment area</h1>
                 </div>
 
@@ -83,28 +83,31 @@ $(document).ready(function () {
         // $(".postComment").on('click', function () {
         let commentText = $('.commentText').val();
         $('.commentText').val('');
-        console.log("clicked post comment");
-        console.log(commentText);
+
+        let data = $(this).attr('data');
         $.ajax({
             method: "POST",
-            url: "/api/new",
-            data: { text: commentText }
-        }).then(() => {
-            console.log(data);
-            // renderComments();
+            url: `/api/comment/${data}`,
+            data: { comment: commentText }
+        }).then((result) => {
+            console.log(result);
+
+            renderComments(data);
         });
     });
 
     renderComments = (scrapId) => {
         getByID(scrapId, result => {
-            let comment = result[0].comment;
-            console.log("newcomment", comment[i].userName)
-            $('.commentArea').empty();
+            console.log(result);
+            let comment = result.comment;
+            console.log(comment);
+
+            //console.log("newcomment", comment[i].userName)
+            $('#commentArea').empty();
             for (let i = 0; i < comment.length; i++) {
-                $('.commentArea').prepend(`
+                $('#commentArea').prepend(`
             <div class="card mt-2">
                 <div class="card-body">
-                    <h5 class="card-title">${comment[i].userName}</h5>
                     <p class="card-text">${comment[i].userComment}</p>
                     <button class="btn btn-danger deleteBtn" id="${comment[i]._id}" data="${scrapId}">Delete</button>
                 </div>
