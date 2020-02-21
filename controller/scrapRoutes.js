@@ -60,17 +60,20 @@ router.post("/new", (req, res) => {
 });
 
 router.post('/comment/:id', (req, res) => {
+    console.log("params.id", req.params.id)
+    console.log("comments.comment", req.body.comments.comment)
     db.Scrap.findByIdAndUpdate(
         { _id: req.params.id },
         {
             $push: {
-                comment: {
-                    comment: req.body.comment
-                }
+                //comments: { comments: req.body.comments.comment}
+                comments: req.body.comments.comment
             }
         }).then(result => {
+            console.log(result)
             res.json(result);
         }).catch((err) => {
+            console.log(err)
             res.send(err);
         });
 });

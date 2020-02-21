@@ -10,7 +10,7 @@ const ScrapSchema = new Schema({
         type: String,
         required: "WebLink is required"
     },
-    comment: {
+    comments: {
         type: [Schema.Types.String],
         default: []
     }
