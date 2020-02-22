@@ -102,7 +102,6 @@ $(document).ready(function () {
     renderComments = (commentText) => {
         let allComments = commentText;
         console.log("all comments", allComments)
-        $("#comments").empty();
         $('#comments').append(`
             <div class="card mt-2">
                 <div class="card-body">
