@@ -40,7 +40,7 @@ $(document).ready(function () {
                       </div>
                     </div>
                     </div>
-                    <div class="commentArea" id="${scrap[i]._id}">
+                    <div class="commentArea" id="comments">
                     <h1>comment area</h1>
                 </div>
 
@@ -94,31 +94,21 @@ $(document).ready(function () {
             data: { comments: { comment: commentText } }
         }).then((result) => {
             console.log("results after click", result);
-            renderComments(result);
+            renderComments(result.comments);
         });
     });
 
 
-    renderComments = (data) => {
-        getByID(data, result => {
-            console.log("scrapID", data);
-            console.log("result", result);
-            let comments = result.comments
-            console.log("comments", comments);
-
-            $("#" + commentArea).empty();
-            for (let i = 0; i < comments.length; i++) {
-                $('#' + commentArea).prepend
-                    (`<div class="card mt-2">
+    renderComments = (commentText) => {
+        let allComments = commentText;
+        console.log("all comments", allComments)
+        $("#comments").empty();
+        $('#comments').append(`
+            <div class="card mt-2">
                 <div class="card-body">
-                    <p class="card-text">${comments[i]}</p>
-                    <button class="btn btn-danger deleteBtn" id="${comments[i]}" data="${data}">Delete</button>
+                   <h1>${allComments}</h1>
                 </div>
             </div>`);
-            }
-        });
+
     }
-
-
-
 });
