@@ -78,8 +78,9 @@ $(document).ready(function () {
         });
     }
 
-    $(document).on('click', function (e) {
+    $(document).on('click', ".postComment", function (e) {
         var id = e.target.getAttribute('data');
+        console.log("id", id);
         var commentId = 'comment_' + id;
         console.log("commentid", commentId);
         e.preventDefault();
@@ -93,15 +94,16 @@ $(document).ready(function () {
             url: `/api/comment/${data}`,
             data: { comments: { comment: commentText } }
         }).then((result) => {
-            console.log("results after click", result);
             renderComments(result.comments);
+            console.log("results after click", result);
         });
     });
 
 
     renderComments = (commentText) => {
         let allComments = commentText;
-        console.log("all comments", allComments)
+        console.log("all comments", allComments);
+
         $('#comments').append(`
             <div class="card mt-2">
                 <div class="card-body">
