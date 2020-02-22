@@ -41,7 +41,7 @@ $(document).ready(function () {
                     </div>
                     </div>
                     <div class="commentArea" id="comments">
-                    <h1>comment area</h1>
+                    <h1></h1>
                 </div>
 
                 </div>
