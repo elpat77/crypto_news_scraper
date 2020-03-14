@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const connection = mongoose.connection;
 const logger = require("morgan");
 const colors = require("colors");
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 const MONGO_URI = process.env.MONGODB_URI || "mongodb://localhost/crypto_news_db"
 
 mongoose.connect(MONGO_URI, {

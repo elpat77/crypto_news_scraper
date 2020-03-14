@@ -7,11 +7,11 @@ $(document).ready(function () {
     function goScrap() {
         scrapeNews(result => {
             getAllNews(scrap => {
-                console.log("scrap", scrap);
+                // console.log("scrap", scrap);
                 for (let i = 0; i < scrap.length; i++) {
-                    $('.news').prepend
+                    $('.news').append
                         (`<row>
-                        <div class="col-sm-12 mb-3">
+                        <div class="col-sm-12 mb-3 resultCard">
                     <div class="card text-center">
                         <div class="card-header">
                             <h5 class="card-title" id="articleTitle">${scrap[i].title}</h5>
@@ -40,13 +40,17 @@ $(document).ready(function () {
                       </div>
                     </div>
                     </div>
-                    <div class="commentArea" id="comments">
-                    <h1></h1>
-                </div>
-
-                </div>
+                    <div class="commentsArea" id="comments_${scrap[i]._id}" ></div>
+                    
                 </row>`);
+
+                    scrap[i].comments.map
+                        (function (comment, index) {
+                            console.log(index, comment);
+                            renderComments(comment, scrap[i]._id)
+                        })
                 }
+
             });
         });
     }
@@ -69,18 +73,18 @@ $(document).ready(function () {
         });
     }
 
-    function getByID(id, cb) {
-        $.ajax({
-            method: 'GET',
-            url: `/api/find/${id}`
-        }).then(result => {
-            cb(result);
-        });
-    }
+    // function getByID(id, cb) {
+    //     $.ajax({
+    //         method: 'GET',
+    //         url: `/api/find/${id}`
+    //     }).then(result => {
+    //         cb(result);
+    //     });
+    // }
 
     $(document).on('click', ".postComment", function (e) {
         var id = e.target.getAttribute('data');
-        console.log("id", id);
+        // console.log("id", id);
         var commentId = 'comment_' + id;
         console.log("commentid", commentId);
         e.preventDefault();
@@ -92,24 +96,28 @@ $(document).ready(function () {
         $.ajax({
             method: "POST",
             url: `/api/comment/${data}`,
-            data: { comments: { comment: commentText } }
+            data: { comment: commentText }
         }).then((result) => {
-            renderComments(result.comments);
-            console.log("results after click", result);
+            // renderComments(result.comments, id);
+            renderComments(commentText, id);
+            // console.log("comments after click", result.comments);
         });
     });
 
 
-    renderComments = (commentText) => {
+    function renderComments(commentText, id) {
         let allComments = commentText;
-        console.log("all comments", allComments);
-
-        $('#comments').append(`
-            <div class="card mt-2">
-                <div class="card-body">
-                   <h1>${allComments}</h1>
+        // console.log("all comments", allComments);
+        if (allComments === null) {
+            return;
+        }
+        $('#comments_' + id).append(`
+            <div class="commentCard mb-0">
+                <div >
+                   <p>${allComments}</p>
                 </div>
             </div>`);
 
     }
+
 });

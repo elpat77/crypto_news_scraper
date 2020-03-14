@@ -1,10 +1,9 @@
 body{
     background-color: rgb(206, 199, 199);
+
 }
 
 .card {
-    min-height: auto;
-    min-width: auto;
     background-color: rgb(211, 184, 161);
     box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
 }
@@ -19,9 +18,21 @@ body{
 }
 
 #form1 {
+    display:none;   
+}
 
-    display:none;
-    
-    }
+.commentsArea {
+    height:140px;
+    overflow: scroll;
+    padding: 10px;
+
+}
+
+.commentCard {
+    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12), 0 2px 4px -1px rgba(0, 0, 0, 0.3); 
+    text-align: left;
+    padding-left: 10px;
+    font-size: 15pt;
+}
 
 

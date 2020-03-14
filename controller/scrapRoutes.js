@@ -61,21 +61,19 @@ router.post("/new", (req, res) => {
 
 router.post('/comment/:id', (req, res) => {
     console.log("params.id", req.params.id)
-    console.log("comments.comment", req.body.comments.comment)
+    console.log("req.body", req.body.comment)
+
     db.Scrap.findByIdAndUpdate(
         { _id: req.params.id },
-        {
-            $push: {
-                //comments: { comments: req.body.comments.comment}
-                comments: req.body.comments.comment
-            }
-        }).then(result => {
-            console.log(result)
-            res.json(result);
-        }).catch((err) => {
-            console.log(err)
-            res.send(err);
-        });
+
+        { "$push": { "comments": req.body.comment } }, { "new": true, "upsert": true }
+    ).then(result => {
+        console.log(result)
+        res.json(result);
+    }).catch((err) => {
+        console.log(err)
+        res.send(err);
+    });
 });
 
 module.exports = router;
