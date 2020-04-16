@@ -37,31 +37,7 @@ For this assignment, I created a web app that lets users view and leave comments
 
      * URL - the url to the original article
 
-     * Feel free to add more content to your database (photos, bylines, and so on).
-
   2. Users should also be able to leave comments on the articles displayed and revisit them later. The comments should be saved to the database as well and associated with their articles. Users should also be able to delete comments left on articles. All stored comments should be visible to every user.
 
-* Beyond these requirements, be creative and have fun with this!
-
-### Tips
-
-* Whenever you scrape a site for stories, make sure an article isn't already represented in your database before saving it; Do not save any duplicate entries.
-
-* Don't just clear out your database and populate it with scraped articles whenever a user accesses your site.
-
-  * If your app deletes stories every time someone visits, your users won't be able to see any comments except the ones that they post.
-
-### Helpful Links
-
-* [MongoDB Documentation](https://docs.mongodb.com/manual/)
-* [Mongoose Documentation](http://mongoosejs.com/docs/api.html)
-* [Cheerio Documentation](https://github.com/cheeriojs/cheerio)
 
 
----
-
-### Hosting on Heroku
-
-Now that we have a backend to our applications, we use Heroku for hosting. Please note that while **Heroku is free**, it will request credit card information if you have more than 5 applications at a time or are adding a database.
-
-Please see [Heroku’s Account Verification Information](https://devcenter.heroku.com/articles/account-verification) for more details.
